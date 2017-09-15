@@ -29,6 +29,7 @@ class CentralWidget : public QWidget {
         QTextEdit *textbox;
         globals* globals = globals->instance();
         char font[10] = "Helvetica";
+        QPushButton *debugButton;
 
     private slots:
         void start(void);
@@ -37,6 +38,9 @@ class CentralWidget : public QWidget {
         void plus(void);
         void test();
         void sync(void);
+        void debugSwitch(void);
+        void save(void) { this->globals->gSaveCppong(); }
+        void load(void) { this->globals->gLoadCppong(); }
 };
 
 #endif // CENTRALWIDGET_H

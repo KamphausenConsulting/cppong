@@ -14,9 +14,12 @@ class globals{
         static globals* instance();
         QTimer*         gTimer;
 
+        QString         gName = "CPPong";
+        QString         gClaim = "A cutting edge application";
         bool            get_gDebug();
         bool            get_gRunning();
         vector<GForm>   get_gForms();
+        QTimer*         get_gSystemTimer();
         QTimer*         get_gTimer();
         float           get_gDisplayFactor();
         bool            get_gColorSwitch();
@@ -24,6 +27,7 @@ class globals{
 
         void            set_gDebug(bool val);
         void            set_gRunning(bool val);
+        void            set_gSystemTimer(QTimer *timer);
         void            set_gTimer(QTimer *timer);
         void            set_gForms(vector<GForm> forms);
         void            set_gApproximation(int val);
@@ -33,6 +37,8 @@ class globals{
 
         void            start_gTimer(int val);
         void            stop_gTimer();
+        void            start_gSystemTimer(int val);
+        void            stop_gSystemTimer();
 
         void            addForm_gForms(GForm form);
         void            populate_gForms();
@@ -43,12 +49,19 @@ class globals{
 
         int             gColorSwitcherId;
         void            switchColor();
+        QTimer*         gSystemTimer;
+
+        void            gSaveCppong();
+        void            gLoadCppong();
 
     private:
         bool            gDebug;
         bool            gRunning;
         bool            gColorSwitch;
         bool            gShowCollisonBoxes;
+        bool            gRandom;
+        int             gRandomMin;
+        int             gRandomMax;
         float           gDisplayFactor;
         string          gSaved;
         vector<GForm>   gForms;
@@ -57,6 +70,7 @@ class globals{
         vector<int>     gField;
         vector<string>  gMessages;
         int             assignId();
+        int             random(int min, int max);
 };
 
 #endif // GLOBALS_H

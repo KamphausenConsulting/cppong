@@ -11,6 +11,10 @@ globals::globals(){
     this->gApproximation      =   100;
     this->gField              =   { 0, 0, 1500,550 };
     this->populate_gForms();
+
+    this->gRandom             =   false;
+    this->gRandomMin          =   0;
+    this->gRandomMax          =   0;
 }
 
 bool globals::get_gDebug(){
@@ -40,6 +44,10 @@ vector<GForm> globals::get_gForms(){
 
 void globals::set_gForms(vector<GForm> forms){
     this->gForms = forms;
+}
+
+QTimer* globals::get_gSystemTimer(){
+    return this->gSystemTimer;
 }
 
 QTimer* globals::get_gTimer(){
@@ -84,6 +92,14 @@ void globals::start_gTimer(int val){
 
 void globals::stop_gTimer(){
     this->gTimer->stop();
+}
+
+void globals::start_gSystemTimer(int val){
+    this->gSystemTimer->start(val);
+}
+
+void globals::stop_gSystemTimer(){
+    this->gSystemTimer->stop();
 }
 
 void globals::addForm_gForms(GForm form){
@@ -169,6 +185,10 @@ void globals::populate_gForms(){
     */
 }
 
+void globals::set_gSystemTimer(QTimer* timer){
+    this->gSystemTimer = timer;
+}
+
 void globals::set_gTimer(QTimer* timer){
     this->gTimer = timer;
 }
@@ -203,4 +223,21 @@ int globals::assignId(){
 void globals::switchColor(){
     if(this->gColorSwitch == true) this->gColorSwitch = false;
     else this->gColorSwitch = true;
+}
+
+int globals::random(int min, int max){
+   static bool first = true;
+   if ( first ) {
+      srand(time(NULL)); //seeding for the first time only!
+      first = false;
+   }
+   return min + rand() % (max - min);
+}
+
+void globals::gSaveCppong(){
+    this->push_gMessage("cppong: everything is saved!");
+}
+
+void globals::gLoadCppong(){
+    this->push_gMessage("cppong: saved data was loaded!" );
 }
