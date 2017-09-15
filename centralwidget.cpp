@@ -9,8 +9,6 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
     globals->set_gTimer(new QTimer(this));
     globals->start_gSystemTimer(5);
     connect(globals->gSystemTimer, SIGNAL(timeout()), this, SLOT(test()));
-    //connect(globals->gTimer, SIGNAL(timeout()), this, SLOT(test()));
-    //ui->setupUi(this);
 
     QPushButton *quit = new QPushButton(tr("EXIT"));
     quit->setFont(QFont(font, 12, QFont::Bold));

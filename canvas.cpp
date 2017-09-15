@@ -6,13 +6,6 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent){
     setMouseTracking(false);
 
     connect(globals->gTimer, SIGNAL(timeout()), this, SLOT(update()));
-
-    /*
-    QTimer *timer;
-    timer=new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(10);
-    */
 }
 
 void Canvas::paintEvent(QPaintEvent * ){
@@ -20,16 +13,6 @@ void Canvas::paintEvent(QPaintEvent * ){
     painter.begin( this );
 
     this->sync();
-
-//    for(vector<GForm>::iterator it = this->gForms.begin(); it != this->gForms.end(); ++it){
-//        if(globals->get_gRunning() == true){
-//            it->move();
-//            if(it->getType() != -1) this->collider.collide(it);
-//        }
-//        it->draw(painter, this->displayFactor, this->gColorSwitch);
-//        it->drawCollBox(painter, this->displayFactor, this->gColorSwitch);
-//        it->drawApproximationBox(painter, globals->get_gApproximation(), this->displayFactor, this->gColorSwitch);
-//    }
 
     for (unsigned i=0; i < this->gForms.size(); i++) {
         if(globals->get_gRunning() == true){
