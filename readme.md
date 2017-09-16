@@ -5,8 +5,8 @@
 ## Stufe I
 
 * General
-  * Zeichenfläche 
-  * zwei Rechtecke mit Koordinaten (25, 25) und (1450, 325) 
+  * Zeichenfläche [x]
+  * zwei Rechtecke mit Koordinaten (25, 25) und (1450, 325) [x]
   * Kreis in der Mitte des Bildschirms
 
 * Bewegungen
