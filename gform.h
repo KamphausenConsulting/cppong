@@ -10,7 +10,7 @@ class GForm{
     public:
         //FUNCTIONS
         GForm();
-        Form::~Form();
+        ~GForm();
         void move();
         void updateLocation();
         void draw(QPainter &painter, float displayFactor, bool colorSwitch);

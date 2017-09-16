@@ -8,7 +8,7 @@ class Collider{
     public:
         //FUNCTIONS
         Collider();
-        Collider::~Collider();
+        ~Collider();
         void collide(GForm &form, vector<GForm> forms);
 
     private:

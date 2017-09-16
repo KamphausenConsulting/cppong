@@ -15,11 +15,41 @@ using namespace std;
 class globals{
     public:
         globals();
-        static globals* instance();
-        QTimer*         gTimer;
+        ~globals();
 
+        //INSTANCES
+        static globals* instance();
+
+        //VARIABLES
+        QTimer*         gTimer;
         QString         gName = "CPPong";
         QString         gClaim = "A cutting edge application";
+        int             gColorSwitcherId;
+        QTimer*         gSystemTimer;
+
+
+        //FUNCTIONS
+        void            increase_gDisplayFactor();
+        void            decrease_gDisplayFactor();
+        void            start_gTimer(int val);
+        void            stop_gTimer();
+        void            start_gSystemTimer(int val);
+        void            stop_gSystemTimer();
+        void            addForm_gForms(GForm form);
+        void            populate_gForms();
+        void            switchColor();
+        void            gSaveCppong();
+        void            gLoadCppong();
+
+        //SETTER-FUNCTIONS
+        void            set_gDebug(bool val);
+        void            set_gRunning(bool val);
+        void            set_gSystemTimer(QTimer *timer);
+        void            set_gTimer(QTimer *timer);
+        void            set_gForms(vector<GForm> forms);
+        void            set_gApproximation(int val);
+
+        //GETTER-FUNCTIONS
         bool            get_gDebug();
         bool            get_gRunning();
         vector<GForm>   get_gForms();
@@ -29,52 +59,32 @@ class globals{
         bool            get_gColorSwitch();
         int             get_gApproximation();
 
-        void            set_gDebug(bool val);
-        void            set_gRunning(bool val);
-        void            set_gSystemTimer(QTimer *timer);
-        void            set_gTimer(QTimer *timer);
-        void            set_gForms(vector<GForm> forms);
-        void            set_gApproximation(int val);
-
-        void            increase_gDisplayFactor();
-        void            decrease_gDisplayFactor();
-
-        void            start_gTimer(int val);
-        void            stop_gTimer();
-        void            start_gSystemTimer(int val);
-        void            stop_gSystemTimer();
-
-        void            addForm_gForms(GForm form);
-        void            populate_gForms();
-
-        void            push_gMessage(string strg);
+        //MESSAGE-FUNCTIONS
+        void            push_gMessage(string strg);             //direct use is deprecated, use log() instead!
+        void            log(string strg, bool debug = true);
         queue<string>   get_gMessages();
         string          pop_gMessage();
 
-        int             gColorSwitcherId;
-        void            switchColor();
-        QTimer*         gSystemTimer;
-
-        void            gSaveCppong();
-        void            gLoadCppong();
-
-        void            log(string strg, bool debug = true);
-
     private:
+        //VARIABLES
         bool            gDebug;
         bool            gRunning;
-        bool            gColorSwitch;
-        bool            gShowCollisonBoxes;
+        float           gDisplayFactor;
+
+        int             gFormCount;
+        int             gApproximation;
         int             gRandom;
         int             gRandomMin;
         int             gRandomMax;
-        float           gDisplayFactor;
+        bool            gColorSwitch;
+        bool            gShowCollisonBoxes;
+
         string          gSaved;
         vector<GForm>   gForms;
-        int             gFormCount;
-        int             gApproximation;
         vector<int>     gField;
         queue<string>   gMessages;
+
+        //FUNCTIONS
         int             assignId();
         int             random(int min, int max);
         string          getCurrentPath();

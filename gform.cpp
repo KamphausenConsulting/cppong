@@ -1,7 +1,6 @@
 #include "gform.h"
 
-GForm::GForm(){
-}
+GForm::GForm(){}
 
 //FUNCTIONS
 void GForm::move(){
@@ -199,4 +198,4 @@ int GForm::getId(){
     return this->id;
 }
 
-Form::~Form(){ }
+GForm::~GForm(){}

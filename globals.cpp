@@ -17,50 +17,12 @@ globals::globals(){
     this->gRandomMax          =   0;
 }
 
-bool globals::get_gDebug(){
-    return this->gDebug;
-}
-
-void globals::set_gDebug(bool val){
-    this->gDebug = val;
-}
-
-bool globals::get_gRunning(){
-    return this->gRunning;
-}
-
-void globals::set_gRunning(bool val){
-    this->gRunning = val;
-}
-
 globals* globals::instance(){
     static globals instance;
     return &instance;
 }
 
-vector<GForm> globals::get_gForms(){
-    return this->gForms;
-}
-
-void globals::set_gForms(vector<GForm> forms){
-    this->gForms = forms;
-}
-
-QTimer* globals::get_gSystemTimer(){
-    return this->gSystemTimer;
-}
-
-QTimer* globals::get_gTimer(){
-    return this->gTimer;
-}
-
-bool globals::get_gColorSwitch(){
-    return this->gColorSwitch;
-}
-
-float globals::get_gDisplayFactor(){
-    return this->gDisplayFactor;
-}
+//FUNCTIONS
 
 void globals::increase_gDisplayFactor(){
     if(this->gDisplayFactor <= 1.9){
@@ -142,22 +104,6 @@ void globals::populate_gForms(){
     this->addForm_gForms(s1);
     this->addForm_gForms(s2);
     this->addForm_gForms(ball);
-}
-
-void globals::set_gSystemTimer(QTimer* timer){
-    this->gSystemTimer = timer;
-}
-
-void globals::set_gTimer(QTimer* timer){
-    this->gTimer = timer;
-}
-
-void globals::set_gApproximation(int val){
-    this->gApproximation = val;
-}
-
-int globals::get_gApproximation(){
-    return this->gApproximation;
 }
 
 void globals::push_gMessage(string strg){
@@ -306,3 +252,67 @@ void globals::log(string strg, bool debug){
         this->push_gMessage(strg);
     }
 }
+
+
+//SETTER-FUNCTIONS
+
+void globals::set_gDebug(bool val){
+    this->gDebug = val;
+}
+
+void globals::set_gRunning(bool val){
+    this->gRunning = val;
+}
+
+void globals::set_gForms(vector<GForm> forms){
+    this->gForms = forms;
+}
+
+void globals::set_gSystemTimer(QTimer* timer){
+    this->gSystemTimer = timer;
+}
+
+void globals::set_gTimer(QTimer* timer){
+    this->gTimer = timer;
+}
+
+void globals::set_gApproximation(int val){
+    this->gApproximation = val;
+}
+
+
+//GETTER-FUNCTIONS
+
+bool globals::get_gDebug(){
+    return this->gDebug;
+}
+
+bool globals::get_gRunning(){
+    return this->gRunning;
+}
+
+vector<GForm> globals::get_gForms(){
+    return this->gForms;
+}
+
+QTimer* globals::get_gSystemTimer(){
+    return this->gSystemTimer;
+}
+
+QTimer* globals::get_gTimer(){
+    return this->gTimer;
+}
+
+bool globals::get_gColorSwitch(){
+    return this->gColorSwitch;
+}
+
+float globals::get_gDisplayFactor(){
+    return this->gDisplayFactor;
+}
+
+int globals::get_gApproximation(){
+    return this->gApproximation;
+}
+
+globals::~globals() {}
