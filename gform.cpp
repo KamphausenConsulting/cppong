@@ -3,8 +3,7 @@
 GForm::GForm(){
 }
 
-//Form::~Form(){ }
-
+//FUNCTIONS
 void GForm::move(){
     this->position[0] += this->movement[0];
     this->position[1] += this->movement[1];
@@ -30,73 +29,6 @@ void GForm::updateLocation(){
     this->location = { Ax, Ay, Bx, By, Cx, Cy, Dx, Dy };
 }
 
-//setter
-
-void GForm::setPosition(int x, int y){
-    this->position[0] = x;
-    this->position[1] = y;
-    this->updateLocation();
-}
-
-void GForm::setMovement(int x, int y){
-    this->movement[0] = x;
-    this->movement[1] = y;
-}
-
-void GForm::setSize(int w, int h){
-    this->size[0] = w;
-    this->size[1] = h;
-    this->updateLocation();
-}
-
-void GForm::setType(char type[10]) {
-    if(type == "rect"||type == "rectangle"||type == "0"){
-        this->type = 0;
-    } else if(type == "border"||type == "boundry" || type == "-1"){
-        this->type = -1;
-    } else {
-        this->type = 1;
-    }
-}
-
-void GForm::setColor(int num, int r, int g, int b) {
-    if(num == 0){
-        this->color[0] = r;
-        this->color[1] = g;
-        this->color[2] = b;
-    } else {
-        this->color[3] = r;
-        this->color[4] = g;
-        this->color[5] = b;
-    }
-}
-
-//getter
-
-vector<int> GForm::getPosition(){
-    return this->position;
-}
-
-vector<int> GForm::getLocation(){
-    return this->location;
-}
-
-vector<int> GForm::getMovement(){
-    return this->movement;
-}
-
-vector<int> GForm::getSize(){
-    return this->size;
-}
-
-int GForm::getType() {
-    return this->type;
-}
-
-vector<int> GForm::getColor() {
-    return this->color;
-}
-
 void GForm::draw(QPainter &painter, float displayFactor = 1.0, bool colorSwitch = false){
     if(this->type == -1){
         this->brush.setStyle(Qt::BDiagPattern);
@@ -110,7 +42,7 @@ void GForm::draw(QPainter &painter, float displayFactor = 1.0, bool colorSwitch 
     if(colorSwitch == 1){
         this->brush.setColor(QColor(this->color[3],
                                     this->color[4],
-                                    this->color[5]));//60,80,100
+                                    this->color[5]));
     } else {
         this->brush.setColor(QColor(this->color[0],
                                     this->color[1],
@@ -194,10 +126,77 @@ void GForm::drawApproximationBox(QPainter &painter, int distance = 0, float disp
     painter.drawPolygon(poly);
 }
 
+//SETTER-FUNCTIONS
+void GForm::setPosition(int x, int y){
+    this->position[0] = x;
+    this->position[1] = y;
+    this->updateLocation();
+}
+
+void GForm::setMovement(int x, int y){
+    this->movement[0] = x;
+    this->movement[1] = y;
+}
+
+void GForm::setSize(int w, int h){
+    this->size[0] = w;
+    this->size[1] = h;
+    this->updateLocation();
+}
+
+void GForm::setType(char type[10]) {
+    if(type == "rect"||type == "rectangle"||type == "0"){
+        this->type = 0;
+    } else if(type == "border"||type == "boundry" || type == "-1"){
+        this->type = -1;
+    } else {
+        this->type = 1;
+    }
+}
+
+void GForm::setColor(int num, int r, int g, int b) {
+    if(num == 0){
+        this->color[0] = r;
+        this->color[1] = g;
+        this->color[2] = b;
+    } else {
+        this->color[3] = r;
+        this->color[4] = g;
+        this->color[5] = b;
+    }
+}
+
 void GForm::setId(int id){
     this->id = id;
+}
+
+//GETTER-FUNCTIONS
+vector<int> GForm::getPosition(){
+    return this->position;
+}
+
+vector<int> GForm::getLocation(){
+    return this->location;
+}
+
+vector<int> GForm::getMovement(){
+    return this->movement;
+}
+
+vector<int> GForm::getSize(){
+    return this->size;
+}
+
+vector<int> GForm::getColor() {
+    return this->color;
+}
+
+int GForm::getType() {
+    return this->type;
 }
 
 int GForm::getId(){
     return this->id;
 }
+
+Form::~Form(){ }
