@@ -65,29 +65,20 @@ float globals::get_gDisplayFactor(){
 void globals::increase_gDisplayFactor(){
     if(this->gDisplayFactor <= 1.9){
         this->gDisplayFactor += 0.1;
-        if(this->get_gDebug()){
-            if(this->get_gDebug()){
-                this->push_gMessage("cppong: display factor increased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
-            }
-
-        }
+        this->log("cppong: display factor increased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
     } else {
         //just do nothing
-        if(this->get_gDebug()){
-            this->push_gMessage("cppong: maximum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
-        }
+        this->log("cppong: maximum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
     }
 }
 
 void globals::decrease_gDisplayFactor(){
     if(this->gDisplayFactor >= 0.3){
         this->gDisplayFactor += -0.1;
-        if(this->get_gDebug()){
-            this->push_gMessage("cppong: display factor decreased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
-        }
+        this->log("cppong: display factor decreased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
     } else {
         //just do nothing
-        this->push_gMessage("cppong: minimum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
+        this->log("cppong: minimum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
     }
 }
 
@@ -110,9 +101,7 @@ void globals::stop_gSystemTimer(){
 void globals::addForm_gForms(GForm form){
     form.setId(this->assignId());
     this->gForms.push_back(form);
-    if(this->get_gDebug()){
-        this->push_gMessage("cppong: a form was added! ( id:" + to_string(this->gFormCount) + ")" );
-    }
+    this->log("cppong: a form was added! ( id:" + to_string(this->gFormCount) + ")" );
 }
 
 void globals::populate_gForms(){
@@ -245,7 +234,7 @@ void globals::gSaveCppong(){
         }
 
         vault.close();
-        this->push_gMessage("cppong: everything is saved!");
+        this->push_gMessage("cppong: game is saved!");
     }
 
 
@@ -255,7 +244,7 @@ void globals::gLoadCppong(){
     string line;
     string x, a, b, c, d, e, f, g;
     if (!std::ifstream(this->getFilePath())){
-        this->push_gMessage("cppong: vault.txt does not exist or is not readable!" );
+        this->push_gMessage("cppong: savegame.vault does not exist or is not readable!" );
         this->push_gMessage("cppong: maybe you have not saved yet?" );
     } else {
         ifstream infile(this->getFilePath());
@@ -271,13 +260,10 @@ void globals::gLoadCppong(){
             getline(linestream, e, ',');// 5
             getline(linestream, f, ',');// 6
             getline(linestream, g, ',');// 7
-            /*
-            if(this->get_gDebug()){
-                this->push_gMessage(a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g);
-            }
-            */
+            this->log(a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g);
+
             if(x == "g"){
-                this->push_gMessage("cppong: loading the globals ...");
+                this->log("cppong: loading the globals ...");
                 this->set_gDebug(stoi(a));
                 this->gColorSwitch = stoi(b);
                 this->set_gApproximation(stoi(c));
@@ -285,7 +271,7 @@ void globals::gLoadCppong(){
                 this->gRandomMin = stoi(e);
                 this->gRandomMax = stoi(f);
                 this->gDisplayFactor = stof(g);
-                this->push_gMessage("cppong: globals loaded!");
+                this->log("cppong: globals loaded!");
             } else if (x == "f"){
                 this->push_gMessage("cppong: loading the forms ...");
                 for (unsigned i=0; i < this->gForms.size(); i++) {
@@ -295,24 +281,15 @@ void globals::gLoadCppong(){
                     gForms[i].setSize(stoi(d), stoi(e));
                     gForms[i].setMovement(stoi(f), stoi(g));
                 }
-                this->push_gMessage("cppong: forms loaded!");
+                this->log("cppong: forms loaded!");
             } else if (x == ""){
-                this->push_gMessage("cppong: line " + to_string(count) + " is empty!");
+                this->log("cppong: line " + to_string(count) + " is empty!");
             } else {
-                this->push_gMessage("cppong: something is wrong in line " + to_string(count));
+                this->log("cppong: something is wrong in line " + to_string(count));
             }
             count++;
         }
-
-        /*
-        std::ifstream infile(this->getFilePath());
-        string a, b, c, d;
-
-        while (infile >> a >> b >> c >> d){
-            this->push_gMessage(a + ' ' + b + ' ' + c + ' ' + d);
-        }
-        */
-        this->push_gMessage("cppong: data loaded from vault!" );
+        this->push_gMessage("cppong: savegame loaded from vault!" );
     }
 }
 
@@ -322,4 +299,10 @@ string globals::getCurrentPath(){
 
 string globals::getFilePath(){
     return this->getCurrentPath() + "/savegame.vault";
+}
+
+void globals::log(string strg, bool debug){
+    if(debug == false || this->get_gDebug() == true){
+        this->push_gMessage(strg);
+    }
 }

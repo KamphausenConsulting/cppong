@@ -4,9 +4,7 @@ Collider::Collider(){}
 
 void Collider::collide(GForm &form, vector<GForm> forms){
     vector<int> m = form.getMovement();
-    if(globals->get_gDebug()){
-        //globals->push_gMessage("cppong: Collider::collide() called!");
-    }
+    //this->log("cppong: Collider::collide() called!");
     if(leaveFieldV(form)){
         form.setMovement(m[0], -m[1]);
     }
@@ -38,14 +36,10 @@ void Collider::collide(GForm &form, vector<GForm> forms){
 
 bool Collider::leaveFieldV(GForm &form){
     if(form.getLocation()[1] < globals->get_gForms()[0].getLocation()[1] && form.getLocation()[7] < globals->get_gForms()[0].getLocation()[7]){
-        if(globals->get_gDebug()){
-            globals->push_gMessage("cppong: collision! (top)");
-        }
+        globals->log("cppong: collision! (top)");
         return true;
     } else if(form.getLocation()[7] > globals->get_gForms()[0].getLocation()[7] && form.getLocation()[1] > globals->get_gForms()[0].getLocation()[1]){
-        if(globals->get_gDebug()){
-            globals->push_gMessage("cppong: collision! (bot)");
-        }
+        globals->log("cppong: collision! (bot)");
         return true;
     } else {
         return false;
@@ -54,14 +48,10 @@ bool Collider::leaveFieldV(GForm &form){
 
 bool Collider::leaveFieldH(GForm &form){
     if(form.getLocation()[0] < globals->get_gForms()[0].getLocation()[0] && form.getLocation()[2] < globals->get_gForms()[0].getLocation()[2]){
-        if(globals->get_gDebug()){
-            globals->push_gMessage("cppong: collision! (left)");
-        }
+        globals->log("cppong: collision! (left)");
         return true;
     } else if(form.getLocation()[2] > globals->get_gForms()[0].getLocation()[2] && form.getLocation()[0] > globals->get_gForms()[0].getLocation()[0]){
-        if(globals->get_gDebug()){
-            globals->push_gMessage("cppong: collision! (right)");
-        }
+        globals->log("cppong: collision! (right)");
         return true;
     } else {
         return false;

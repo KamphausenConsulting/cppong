@@ -48,7 +48,7 @@ class globals{
         void            populate_gForms();
 
         void            push_gMessage(string strg);
-        queue<string>  get_gMessages();
+        queue<string>   get_gMessages();
         string          pop_gMessage();
 
         int             gColorSwitcherId;
@@ -57,6 +57,8 @@ class globals{
 
         void            gSaveCppong();
         void            gLoadCppong();
+
+        void            log(string strg, bool debug = true);
 
     private:
         bool            gDebug;

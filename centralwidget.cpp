@@ -95,12 +95,7 @@ void CentralWidget::plus() {
 
 void CentralWidget::test(){
     queue<string> gMassages = globals->get_gMessages();
-    /*for(queue<string>::iterator msg = gMassages.begin(); msg != gMassages.end(); ++msg){
-        string strg = globals->pop_gMessage();
-        this->textbox->append(strg.c_str());
-    }*/
     while (!gMassages.empty()){
-      //std::cout << ' ' << myqueue.front();
       string strg = globals->pop_gMessage();
       this->textbox->append(strg.c_str());
       gMassages.pop();
