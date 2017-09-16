@@ -21,6 +21,9 @@ void Collider::collide(GForm &form, vector<GForm> forms){
     }
     if(form.getType() == 1){
         if(detectCollision(form, forms)){
+            if(m[1]==0){
+                m[1] = globals->random(-3,3);
+            }
             form.setMovement(-m[0], m[1]);
             vector<int> current = form.getPosition();
             vector<int> mNew    = form.getMovement();

@@ -81,7 +81,7 @@ void globals::populate_gForms(){
     s1.setType("rect");
     s1.setColor(0, 255, 0, 0);
     s1.setColor(1, 0, 255, 0);
-    s1.setMovement(0,1);
+    s1.setMovement(0,2);//original: 0, 4
 
     GForm s2             = GForm::GForm();
     s2.setPosition(1450,325);
@@ -89,7 +89,7 @@ void globals::populate_gForms(){
     s2.setType("rect");
     s2.setColor(0, 0, 0, 255);
     s2.setColor(1, 255, 0, 0);
-    s2.setMovement(0,-1);
+    s2.setMovement(0,-4);//original: 0, -8
 
     GForm ball           = GForm::GForm();
     ball.setPosition(735,212);
@@ -97,7 +97,7 @@ void globals::populate_gForms(){
     ball.setType("ball");
     ball.setColor(0, 0, 255, 0);
     ball.setColor(1, 0, 0, 255);
-    ball.setMovement(-1, 3);
+    ball.setMovement(8, 0);//original: 16, 0
 
     //forms.push_back(form);
     this->addForm_gForms(field);

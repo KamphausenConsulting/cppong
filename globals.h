@@ -40,6 +40,7 @@ class globals{
         void            switchColor();
         void            gSaveCppong();
         void            gLoadCppong();
+        int             random(int min, int max);
 
         //SETTER-FUNCTIONS
         void            set_gDebug(bool val);
@@ -87,7 +88,6 @@ class globals{
 
         //FUNCTIONS
         int             assignId();
-        int             random(int min, int max);
         string          getCurrentPath();
         string          getFilePath();
 };
