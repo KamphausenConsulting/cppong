@@ -37,8 +37,8 @@ class GForm{
     private:
         int id;
         int type        = 0;                                //border -1, rectangle = 0 or circle = 1
-        int border      = 0;                                //border thickness
-        char coll[2]    = "x";                              //collision direction
+        int border      = 0;                                //border thickness [UNUSED!]
+        char coll[2]    = "x";                              //collision direction [UNUSED!]
         vector<int> position = { 0, 0 };                    //position x, y
         vector<int> movement = { 0, 0 };                    //movement as vector x, y
         vector<int> size     = { 25, 25 };                  //width, height

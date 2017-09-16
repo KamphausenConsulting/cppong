@@ -73,6 +73,7 @@ bool Collider::detectApproximation(GForm &form){
             return true;
         }
     }
+    return false;
 }
 
 bool Collider::detectCollision(GForm &form, vector<GForm> forms){
@@ -86,6 +87,7 @@ bool Collider::detectCollision(GForm &form, vector<GForm> forms){
         if (formLoction[0] < targetLocation[4] && formLoction[4] > targetLocation[0] &&
             formLoction[1] < targetLocation[5] && formLoction[5] > targetLocation[1]) return true;
     }
+    return false;
 }
 
 Collider::~Collider(){}
