@@ -9,7 +9,7 @@ CONFIG   -= console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = cppong
+TARGET = CPPong
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -39,3 +39,27 @@ HEADERS  += centralwidget.h \
     collider.h
 
 FORMS    += centralwidget.ui
+
+VERSION = 1.0a
+
+#ICON = $$PRO_FILE_PWD/app.icns
+#ICON    = RESOURCES:/app.icns
+
+#QMAKE_INFO_PLIST = Info.plist
+
+#ICON = app.icns
+
+macx{
+    MediaFiles.files = app.icns
+    MediaFiles.path = Contents/MacOS
+    QMAKE_BUNDLE_DATA += MediaFiles
+    ICON = app.icns
+}
+
+#macx:ICON = $${PWD}/app.icns
+
+#macx{
+# QMAKE_INFO_PLIST   =	Info.plist
+# ICON        =   app.icns
+#}
+
