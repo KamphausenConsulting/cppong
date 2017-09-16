@@ -85,10 +85,16 @@ void CentralWidget::plus() {
 }
 
 void CentralWidget::test(){
-    vector<string> gMassages = globals->get_gMessages();
-    for(vector<string>::iterator msg = gMassages.begin(); msg != gMassages.end(); ++msg){
+    queue<string> gMassages = globals->get_gMessages();
+    /*for(queue<string>::iterator msg = gMassages.begin(); msg != gMassages.end(); ++msg){
         string strg = globals->pop_gMessage();
         this->textbox->append(strg.c_str());
+    }*/
+    while (!gMassages.empty()){
+      //std::cout << ' ' << myqueue.front();
+      string strg = globals->pop_gMessage();
+      this->textbox->append(strg.c_str());
+      gMassages.pop();
     }
     QTextCursor c =  this->textbox->textCursor();
     c.movePosition(QTextCursor::End);

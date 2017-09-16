@@ -7,6 +7,7 @@ using namespace std;
 #include <QTimer>
 #include <fstream>
 #include <iostream>
+#include <queue>
 
 #include "gform.h"
 
@@ -46,7 +47,7 @@ class globals{
         void            populate_gForms();
 
         void            push_gMessage(string strg);
-        vector<string>  get_gMessages();
+        queue<string>  get_gMessages();
         string          pop_gMessage();
 
         int             gColorSwitcherId;
@@ -70,7 +71,7 @@ class globals{
         int             gFormCount;
         int             gApproximation;
         vector<int>     gField;
-        vector<string>  gMessages;
+        queue<string>   gMessages;
         int             assignId();
         int             random(int min, int max);
         string          getCurrentPath();

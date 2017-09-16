@@ -167,16 +167,16 @@ int globals::get_gApproximation(){
 }
 
 void globals::push_gMessage(string strg){
-    this->gMessages.push_back(strg);
+    this->gMessages.push(strg);
 }
 
-vector<string> globals::get_gMessages(){
+queue<string> globals::get_gMessages(){
     return this->gMessages;
 }
 
 string globals::pop_gMessage(){
-    string msg = this->gMessages.back();
-    this->gMessages.pop_back();
+    string msg = this->gMessages.front();
+    this->gMessages.pop();
     return msg;
 }
 
