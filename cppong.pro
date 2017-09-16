@@ -30,6 +30,7 @@ SOURCES += main.cpp\
     canvas.cpp \
     gform.cpp \
     collider.cpp
+    vault.txt
 
 HEADERS  += centralwidget.h \
     globals.h \

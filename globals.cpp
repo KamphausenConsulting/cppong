@@ -118,35 +118,6 @@ void globals::populate_gForms(){
     field.setSize(this->gField[2], this->gField[3]);
     field.setColor(0, 200, 200, 200);
     field.setColor(1, 200, 200, 200);
-    /*
-    GForm borderLeft     = GForm::GForm();
-    borderLeft.setType("-1");
-    borderLeft.setPosition(10,0);
-    borderLeft.setSize(-50,720);
-    borderLeft.setColor(0, 255, 255, 255);
-    borderLeft.setColor(1, 255, 255, 255);
-
-    GForm borderTop      = GForm::GForm();
-    borderTop.setType("-1");
-    borderTop.setPosition(0,10);
-    borderTop.setSize(1540,-50);
-    borderTop.setColor(0, 255, 255, 255);
-    borderTop.setColor(1, 255, 255, 255);
-
-    GForm borderRight    = GForm::GForm();
-    borderRight.setType("-1");
-    borderRight.setPosition(1490,0);
-    borderRight.setSize(50,720);
-    borderRight.setColor(0, 255, 255, 255);
-    borderRight.setColor(1, 255, 255, 255);
-
-    GForm borderBottom   = GForm::GForm();
-    borderBottom.setType("-1");
-    borderBottom.setPosition(0,720);
-    borderBottom.setSize(1540,-50);
-    borderBottom.setColor(0, 255, 255, 255);
-    borderBottom.setColor(1, 255, 255, 255);
-    */
 
     GForm s1             = GForm::GForm();
     s1.setPosition(25,25);
@@ -177,12 +148,6 @@ void globals::populate_gForms(){
     this->addForm_gForms(s1);
     this->addForm_gForms(s2);
     this->addForm_gForms(ball);
-    /*
-    this->addForm_gForms(borderLeft);
-    this->addForm_gForms(borderTop);
-    this->addForm_gForms(borderRight);
-    this->addForm_gForms(borderBottom);
-    */
 }
 
 void globals::set_gSystemTimer(QTimer* timer){
@@ -235,9 +200,41 @@ int globals::random(int min, int max){
 }
 
 void globals::gSaveCppong(){
-    this->push_gMessage("cppong: everything is saved!");
+
+    if(std::ofstream(this->getFilePath())){
+        std::ofstream vault;
+        vault.open (this->getFilePath());
+        vault << "1 test" << endl;
+        vault << "2 test" << endl;
+        vault << "3 test" << endl;
+        vault << "4 lul" << endl;
+        vault.close();
+        this->push_gMessage("cppong: everything is saved!");
+    }
+
+
 }
 
 void globals::gLoadCppong(){
-    this->push_gMessage("cppong: saved data was loaded!" );
+    if (!std::ifstream(this->getFilePath())){
+        this->push_gMessage("cppong: vault.txt does not exist or is not readable!" );
+        this->push_gMessage("cppong: maybe you have not saved yet?" );
+    } else {
+        std::ifstream infile(this->getFilePath());
+        int a;
+        string b;
+
+        while (infile >> a >> b){
+            this->push_gMessage(b);
+        }
+        this->push_gMessage("cppong: data loaded from vault!" );
+    }
+}
+
+string globals::getCurrentPath(){
+    return QDir::currentPath().toUtf8().constData();
+}
+
+string globals::getFilePath(){
+    return this->getCurrentPath() + "/savegame.vault";
 }

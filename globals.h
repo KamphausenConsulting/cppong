@@ -5,6 +5,8 @@ using namespace std;
 #include <vector>
 #include <string>
 #include <QTimer>
+#include <fstream>
+#include <iostream>
 
 #include "gform.h"
 
@@ -71,6 +73,8 @@ class globals{
         vector<string>  gMessages;
         int             assignId();
         int             random(int min, int max);
+        string          getCurrentPath();
+        string          getFilePath();
 };
 
 #endif // GLOBALS_H
