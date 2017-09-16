@@ -1,10 +1,10 @@
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/gfx/CPPong512.png)
 
-#CPPong
+# CPPong
 
-##Stufe I
+## Stufe I
 
-*General
+* General
   * Zeichenfläche 
   * zwei Rechtecke mit Koordinaten (25, 25) und (1450, 325) 
   * Kreis in der Mitte des Bildschirms
@@ -22,9 +22,9 @@
       * 2- Quadrat acht Pixel pro Zeiteinheit  
       * Kreis sechzehn pro Zeiteinheit 
 
-*Farben & Gestaltung
-  *Farben rot, grün, blau
-  *Umriss mit einer Linienstärke von drei Pixeln.
+* Farben & Gestaltung
+  * Farben rot, grün, blau
+  * Umriss mit einer Linienstärke von drei Pixeln.
   * Buttoms
     * „Start“: setzt alles in Bewegung
     * „Stop“ stoppt alle drei Objekte
@@ -33,15 +33,15 @@
     * Gespeichert / geladen muss die gesamte Anwendung werden! 
     Es müssen also alle Objekte an der jeweils letzten Stelle wieder erscheinen und bei den Aufgabenstellungen II bis IV sich ergebende zusätzliche Eigenschaften der Quadrate wieder hergestellt werden.
 
-##Stufe II
+## Stufe II
 
-*Basisaufgabe wird realisiert wie oben. 
-*Zusätzlich springen die Farben alle Objekte, also der Quadrate sowie des Kreises, von „Rot, Grün, Blau“ zu „Grün, Blau, Rot“ sobald sich der Kreis einem der Quadrate auf 100 Pixel annähert und wieder zurück zu „Rot, Grün, Blau“, sobald die Beiden sich wieder weiter als 100 Pixel voneinander entfernen.
+* Basisaufgabe wird realisiert wie oben. 
+* Zusätzlich springen die Farben alle Objekte, also der Quadrate sowie des Kreises, von „Rot, Grün, Blau“ zu „Grün, Blau, Rot“ sobald sich der Kreis einem der Quadrate auf 100 Pixel annähert und wieder zurück zu „Rot, Grün, Blau“, sobald die Beiden sich wieder weiter als 100 Pixel voneinander entfernen.
 
-##Stufe III
+## Stufe III
 
-*Zusätzlich: Nähert sich der Kreis einem Quadrat soweit an, dass sie sich berühren würden, kehren diese Beiden ihre Bewegungsrichtung um, bewegen sich also wieder voneinander weg (bis sie wieder miteinander kollidieren).
+* Zusätzlich: Nähert sich der Kreis einem Quadrat soweit an, dass sie sich berühren würden, kehren diese Beiden ihre Bewegungsrichtung um, bewegen sich also wieder voneinander weg (bis sie wieder miteinander kollidieren).
 
-##Stufe IV
+## Stufe IV
 
-*Der Kreis bewegt sich nichtmehr auf einer horizontalen Bahn über den Bildschirm, sondern ändert seine Laufbahn wenn er mit einem Quadrat kollidiert. Durch das Verwenden der Cosinusfunktion, (http://www.cplusplus.com/reference/cmath/cos/) wird ein Wert generiert, in dessen Winkeln sich der Kreis nun auch auf der Y-Achse durch das Bildschirmfeld bewegt. Erreicht der Kreis dabei den Rand des Bildschirms, so kehrt er seine Y-Bewegung im selben Winkel um. Dadurch kann eine Bewegung wie in der folgenden Skizze entstehen:
+* Der Kreis bewegt sich nichtmehr auf einer horizontalen Bahn über den Bildschirm, sondern ändert seine Laufbahn wenn er mit einem Quadrat kollidiert. Durch das Verwenden der Cosinusfunktion, (http://www.cplusplus.com/reference/cmath/cos/) wird ein Wert generiert, in dessen Winkeln sich der Kreis nun auch auf der Y-Achse durch das Bildschirmfeld bewegt. Erreicht der Kreis dabei den Rand des Bildschirms, so kehrt er seine Y-Bewegung im selben Winkel um. Dadurch kann eine Bewegung wie in der folgenden Skizze entstehen:
