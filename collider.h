@@ -8,7 +8,9 @@ class Collider{
     public:
         //FUNCTIONS
         Collider();
+        Collider::~Collider();
         void collide(GForm &form, vector<GForm> forms);
+
     private:
         //INSTANCES
         globals* globals = globals->instance();

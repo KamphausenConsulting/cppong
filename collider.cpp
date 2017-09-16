@@ -87,3 +87,5 @@ bool Collider::detectCollision(GForm &form, vector<GForm> forms){
             formLoction[1] < targetLocation[5] && formLoction[5] > targetLocation[1]) return true;
     }
 }
+
+Collider::~Collider(){}
