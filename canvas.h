@@ -14,16 +14,24 @@ using namespace std;
 class Canvas : public QWidget {
 
     public:
+        //INSTANCES
         Canvas(QWidget *parent = 0);
+
+        //FUNCTIONS
         void sync(void);
 
     private:
-        globals* globals = globals::instance();
-        Collider collider = Collider::Collider();
-        void paintEvent(QPaintEvent *event);
+        //INSTANCES
+        globals* globals                    = globals::instance();
+        Collider collider                   = Collider::Collider();
+
+        //VARIABLES
         vector<GForm> gForms;
         float displayFactor;
         bool  gColorSwitch;
+
+        //FUNCTIONS
+        void paintEvent(QPaintEvent *event);      
 };
 
 #endif // CANVAS_H

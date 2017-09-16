@@ -8,6 +8,15 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent){
     connect(globals->gTimer, SIGNAL(timeout()), this, SLOT(update()));
 }
 
+//PRIVATE
+void Canvas::sync(void){
+    this->gForms          = globals->get_gForms();
+    this->displayFactor   = globals->get_gDisplayFactor();
+    this->gColorSwitch    = globals->get_gColorSwitch();
+    update();
+}
+
+//PUBLIC
 void Canvas::paintEvent(QPaintEvent * ){
     QPainter painter;
     painter.begin( this );
@@ -25,16 +34,7 @@ void Canvas::paintEvent(QPaintEvent * ){
             gForms[i].drawApproximationBox(painter, globals->get_gApproximation(), this->displayFactor, this->gColorSwitch);
         }
     }
-
     globals->set_gForms(this->gForms);
-
     update();
     painter.end();
-}
-
-void Canvas::sync(void){
-    this->gForms          = globals->get_gForms();
-    this->displayFactor   = globals->get_gDisplayFactor();
-    this->gColorSwitch    = globals->get_gColorSwitch();
-    update();
 }
