@@ -219,7 +219,7 @@ void globals::gLoadCppong(){
                 this->gDisplayFactor = stof(g);
                 this->log("cppong: globals loaded!");
             } else if (x == "f"){
-                this->push_gMessage("cppong: loading the forms ...");
+                this->log("cppong: loading form ...");
                 for (unsigned i=0; i < this->gForms.size(); i++) {
                     if(gForms[i].getId() != stoi(a)) continue;
                     gForms[i].setId(stoi(a));
@@ -227,7 +227,7 @@ void globals::gLoadCppong(){
                     gForms[i].setSize(stoi(d), stoi(e));
                     gForms[i].setMovement(stoi(f), stoi(g));
                 }
-                this->log("cppong: forms loaded!");
+                this->log("cppong: form loaded!");
             } else if (x == ""){
                 this->log("cppong: line " + to_string(count) + " is empty!");
             } else {
@@ -240,7 +240,9 @@ void globals::gLoadCppong(){
 }
 
 string globals::getCurrentPath(){
-    return QDir::currentPath().toUtf8().constData();
+    //return QDir::currentPath().toUtf8().constData();
+    QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    return location.toUtf8().constData();
 }
 
 string globals::getFilePath(){
@@ -280,6 +282,9 @@ void globals::set_gApproximation(int val){
     this->gApproximation = val;
 }
 
+void globals::set_gDisplayFactor(float val){
+    this->gDisplayFactor = val;
+}
 
 //GETTER-FUNCTIONS
 

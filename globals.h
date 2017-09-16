@@ -48,6 +48,7 @@ class globals{
         void            set_gTimer(QTimer *timer);
         void            set_gForms(vector<GForm> forms);
         void            set_gApproximation(int val);
+        void            set_gDisplayFactor(float val);
 
         //GETTER-FUNCTIONS
         bool            get_gDebug();

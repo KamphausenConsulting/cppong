@@ -2,7 +2,8 @@
 #include "ui_centralwidget.h"
 
 CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent) {
-    globals->set_gDebug(true);
+    globals->set_gDebug(false);
+    globals->set_gDisplayFactor(0.5);
     globals->set_gSystemTimer(new QTimer(this));
     globals->set_gTimer(new QTimer(this));
     globals->start_gSystemTimer(5);
