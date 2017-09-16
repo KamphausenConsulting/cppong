@@ -16,7 +16,7 @@ class Canvas : public QWidget {
     public:
         //INSTANCES
         Canvas(QWidget *parent = 0);
-
+        ~Canvas();
         //FUNCTIONS
         void sync(void);
 

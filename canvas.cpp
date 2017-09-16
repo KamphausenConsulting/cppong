@@ -38,3 +38,5 @@ void Canvas::paintEvent(QPaintEvent * ){
     update();
     painter.end();
 }
+
+Canvas::~Canvas(){}

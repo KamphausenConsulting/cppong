@@ -1,9 +1,7 @@
 #include "centralwidget.h"
 #include "ui_centralwidget.h"
 
-
-CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
-                                                ui(new Ui::CentralWidget){
+CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent) {
     globals->set_gDebug(true);
     globals->set_gSystemTimer(new QTimer(this));
     globals->set_gTimer(new QTimer(this));
@@ -73,6 +71,7 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
 
 }
 
+//FUNCTIONS
 void CentralWidget::start(void){
     globals->set_gRunning(true);
     globals->start_gTimer(10);
@@ -91,6 +90,11 @@ void CentralWidget::minus() {
 
 void CentralWidget::plus() {
     globals->increase_gDisplayFactor();
+}
+
+void CentralWidget::debugSwitch(void){
+    bool d = globals->get_gDebug();
+    globals->set_gDebug(!d);
 }
 
 void CentralWidget::test(){
@@ -124,13 +128,4 @@ void CentralWidget::sync(void){
     MainCanvas->sync();
 }
 
-void CentralWidget::debugSwitch(void){
-    bool d = globals->get_gDebug();
-    globals->set_gDebug(!d);
-}
-
-/*
-CentralWidget::~CentralWidget(){
-    //delete ui;
-}
-*/
+CentralWidget::~CentralWidget(){}

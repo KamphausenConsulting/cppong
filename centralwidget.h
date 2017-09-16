@@ -13,36 +13,36 @@
 #include "canvas.h"
 #include "globals.h"
 
-namespace Ui {
-    class CentralWidget;
-}
-
 class CentralWidget : public QWidget {
     Q_OBJECT
 
     public:
+        //FUNCTIONS
         explicit CentralWidget(QWidget *parent = 0);
-        //~CentralWidget();
+        ~CentralWidget();
 
     private:
-        Ui::CentralWidget *ui;
-        Canvas *MainCanvas;
-        QTextEdit *textbox;
-        globals* globals = globals->instance();
-        char font[10] = "Helvetica";
+        //INSTANCES
+        globals*    globals             = globals->instance();
+        //VARIABLES
+        char        font[10]            = "Helvetica";
+        Canvas      *MainCanvas;
+        QTextEdit   *textbox;
         QPushButton *debugButton;
-        QLabel *labelDisplayFactor;
+        QLabel      *labelDisplayFactor;
 
     private slots:
+        //FUNCTIONS
         void start(void);
         void stop(void);
         void minus(void);
         void plus(void);
-        void test();
-        void sync(void);
         void debugSwitch(void);
         void save(void) { this->globals->gSaveCppong(); }
         void load(void) { this->globals->gLoadCppong(); }
+
+        void test();
+        void sync(void);
 };
 
 #endif // CENTRALWIDGET_H

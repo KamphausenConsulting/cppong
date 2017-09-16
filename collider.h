@@ -6,10 +6,14 @@
 
 class Collider{
     public:
+        //FUNCTIONS
         Collider();
         void collide(GForm &form, vector<GForm> forms);
     private:
+        //INSTANCES
         globals* globals = globals->instance();
+
+        //FUNCTIONS
         bool leaveFieldV(GForm &form);
         bool leaveFieldH(GForm &form);
         bool detectApproximation(GForm &form);
