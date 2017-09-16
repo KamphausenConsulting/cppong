@@ -235,12 +235,12 @@ void globals::gSaveCppong(){
         for (unsigned i=0; i < this->gForms.size(); i++) {
             vault << "f,";                                          //0
             vault << to_string(gForms[i].getId()) + ',';            //1
-            vault << to_string(gForms[i].getType()) + ',';          //2
-            vault << to_string(gForms[i].getPosition()[0]) + ',';   //3
-            vault << to_string(gForms[i].getPosition()[1]) + ',';   //4
-            vault << to_string(gForms[i].getSize()[0]) + ',';       //5
-            vault << to_string(gForms[i].getSize()[1]) + ',';       //6
-            vault << ',';                                           //7
+            vault << to_string(gForms[i].getPosition()[0]) + ',';   //2
+            vault << to_string(gForms[i].getPosition()[1]) + ',';   //3
+            vault << to_string(gForms[i].getSize()[0]) + ',';       //4
+            vault << to_string(gForms[i].getSize()[1]) + ',';       //5
+            vault << to_string(gForms[i].getMovement()[0]) + ',';   //6
+            vault << to_string(gForms[i].getMovement()[1]) + ',';   //7
             vault << endl;
         }
 
@@ -288,7 +288,13 @@ void globals::gLoadCppong(){
                 this->push_gMessage("cppong: globals loaded!");
             } else if (x == "f"){
                 this->push_gMessage("cppong: loading the forms ...");
-
+                for (unsigned i=0; i < this->gForms.size(); i++) {
+                    if(gForms[i].getId() != stoi(a)) continue;
+                    gForms[i].setId(stoi(a));
+                    gForms[i].setPosition(stoi(b), stoi(c));
+                    gForms[i].setSize(stoi(d), stoi(e));
+                    gForms[i].setMovement(stoi(f), stoi(g));
+                }
                 this->push_gMessage("cppong: forms loaded!");
             } else if (x == ""){
                 this->push_gMessage("cppong: line " + to_string(count) + " is empty!");
