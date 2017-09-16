@@ -12,7 +12,7 @@ globals::globals(){
     this->gField              =   { 0, 0, 1500,550 };
     this->populate_gForms();
 
-    this->gRandom             =   false;
+    this->gRandom             =   0;
     this->gRandomMin          =   0;
     this->gRandomMax          =   0;
 }
@@ -66,11 +66,16 @@ void globals::increase_gDisplayFactor(){
     if(this->gDisplayFactor <= 1.9){
         this->gDisplayFactor += 0.1;
         if(this->get_gDebug()){
-            this->push_gMessage("cppong: display factor increased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
+            if(this->get_gDebug()){
+                this->push_gMessage("cppong: display factor increased by 0.1! (" + to_string(this->gDisplayFactor) + ")" );
+            }
+
         }
     } else {
         //just do nothing
-        this->push_gMessage("cppong: maximum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
+        if(this->get_gDebug()){
+            this->push_gMessage("cppong: maximum display factor reached! (" + to_string(this->gDisplayFactor) + ")" );
+        }
     }
 }
 
@@ -202,12 +207,43 @@ int globals::random(int min, int max){
 void globals::gSaveCppong(){
 
     if(std::ofstream(this->getFilePath())){
+        int debugVal = 0;
+        if(this->get_gDebug()) debugVal = 1;
+
+        string colorVal = "0";
+        if(this->get_gColorSwitch()) colorVal = "1";
+
+        string approxVal = "0";
+        if(this->get_gApproximation() != 0) approxVal = to_string(this->get_gApproximation());
+
+        string displayVal = "1";
+        if(this->get_gDisplayFactor() != 1) displayVal = to_string(this->get_gDisplayFactor());
+
+
         std::ofstream vault;
         vault.open (this->getFilePath());
-        vault << "1 test" << endl;
-        vault << "2 test" << endl;
-        vault << "3 test" << endl;
-        vault << "4 lul" << endl;
+        vault << "g,";                                  //0
+        vault << to_string(debugVal)+ ',';              //1
+        vault << colorVal + ',';                        //2
+        vault << approxVal + ',';                       //3
+        vault << to_string(this->gRandom) + ',';        //4
+        vault << to_string(this->gRandomMin) + ',';     //5
+        vault << to_string(this->gRandomMax) + ',';     //6
+        vault << displayVal << endl;                    //7
+        vault << ",,,,,,,"<< endl;
+
+        for (unsigned i=0; i < this->gForms.size(); i++) {
+            vault << "f,";                                          //0
+            vault << to_string(gForms[i].getId()) + ',';            //1
+            vault << to_string(gForms[i].getType()) + ',';          //2
+            vault << to_string(gForms[i].getPosition()[0]) + ',';   //3
+            vault << to_string(gForms[i].getPosition()[1]) + ',';   //4
+            vault << to_string(gForms[i].getSize()[0]) + ',';       //5
+            vault << to_string(gForms[i].getSize()[1]) + ',';       //6
+            vault << ',';                                           //7
+            vault << endl;
+        }
+
         vault.close();
         this->push_gMessage("cppong: everything is saved!");
     }
@@ -216,17 +252,60 @@ void globals::gSaveCppong(){
 }
 
 void globals::gLoadCppong(){
+    string line;
+    string x, a, b, c, d, e, f, g;
     if (!std::ifstream(this->getFilePath())){
         this->push_gMessage("cppong: vault.txt does not exist or is not readable!" );
         this->push_gMessage("cppong: maybe you have not saved yet?" );
     } else {
-        std::ifstream infile(this->getFilePath());
-        int a;
-        string b;
+        ifstream infile(this->getFilePath());
+        int count = 1;
+        while (getline(infile, line)){
+            std::stringstream linestream(line);
 
-        while (infile >> a >> b){
-            this->push_gMessage(b);
+            getline(linestream, x, ',');// 0
+            getline(linestream, a, ',');// 1
+            getline(linestream, b, ',');// 2
+            getline(linestream, c, ',');// 3
+            getline(linestream, d, ',');// 4
+            getline(linestream, e, ',');// 5
+            getline(linestream, f, ',');// 6
+            getline(linestream, g, ',');// 7
+            /*
+            if(this->get_gDebug()){
+                this->push_gMessage(a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g);
+            }
+            */
+            if(x == "g"){
+                this->push_gMessage("cppong: loading the globals ...");
+                this->set_gDebug(stoi(a));
+                this->gColorSwitch = stoi(b);
+                this->set_gApproximation(stoi(c));
+                this->gRandom = stoi(d);
+                this->gRandomMin = stoi(e);
+                this->gRandomMax = stoi(f);
+                this->gDisplayFactor = stof(g);
+                this->push_gMessage("cppong: globals loaded!");
+            } else if (x == "f"){
+                this->push_gMessage("cppong: loading the forms ...");
+
+                this->push_gMessage("cppong: forms loaded!");
+            } else if (x == ""){
+                this->push_gMessage("cppong: line " + to_string(count) + " is empty!");
+            } else {
+                this->push_gMessage("cppong: something is wrong in line " + to_string(count));
+            }
+            count++;
         }
+
+        /*
+        std::ifstream infile(this->getFilePath());
+        string a, b, c, d;
+
+        while (infile >> a >> b >> c >> d){
+            this->push_gMessage(a + ' ' + b + ' ' + c + ' ' + d);
+        }
+        */
         this->push_gMessage("cppong: data loaded from vault!" );
     }
 }

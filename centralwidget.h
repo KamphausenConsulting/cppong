@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QtGui>
+#include <QLabel>
 
 #include "gform.h"
 #include "canvas.h"
@@ -30,6 +31,7 @@ class CentralWidget : public QWidget {
         globals* globals = globals->instance();
         char font[10] = "Helvetica";
         QPushButton *debugButton;
+        QLabel *labelDisplayFactor;
 
     private slots:
         void start(void);

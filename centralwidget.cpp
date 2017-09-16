@@ -42,6 +42,14 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
     debugButton->setFont(QFont(font, 12, QFont::Bold));
     connect(debugButton, SIGNAL(clicked()), this, SLOT(debugSwitch()));
 
+    QLabel *label = new QLabel(tr("TEST"));
+    label->setFont(QFont(font, 12, QFont::Bold));
+
+    labelDisplayFactor= new QLabel(QString::number(globals->get_gDisplayFactor()));
+    labelDisplayFactor->setFont(QFont(font, 12, QFont::Bold));
+    labelDisplayFactor->setFixedWidth(20);
+    labelDisplayFactor->setAlignment(Qt::AlignCenter);
+
     MainCanvas = new Canvas;
     this->textbox = new QTextEdit;
 
@@ -54,8 +62,9 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
     gridLayout->addWidget(saveButton,   0,  3);
     gridLayout->addWidget(loadButton,   0,  4);
     gridLayout->addWidget(minusButton,  0,  5);
-    gridLayout->addWidget(plusButton,   0,  6);
-    gridLayout->addWidget(debugButton,   0,  7);
+    gridLayout->addWidget(labelDisplayFactor,   0,  6);
+    gridLayout->addWidget(plusButton,   0,  7);
+    gridLayout->addWidget(debugButton,   0,  8);
     //gridLayout->setColumnStretch(1,0);
     gridLayout->setRowStretch(1,3);
     gridLayout->addWidget(MainCanvas, 1, 0, 3, 0);
@@ -100,14 +109,15 @@ void CentralWidget::test(){
     c.movePosition(QTextCursor::End);
     this->textbox->setTextCursor(c);
 
+    this->labelDisplayFactor->setText(QString::number(globals->get_gDisplayFactor()));
 
 
     QString windowTitle;
     if(globals->get_gDebug()){
         windowTitle += "[DEBUG MODE] ";
-        this->debugButton->setStyleSheet("color: rgb(255, 0, 0)");
-    } else {
         this->debugButton->setStyleSheet("color: rgb(0, 255, 0)");
+    } else {
+        this->debugButton->setStyleSheet("color: rgb(255, 0, 0)");
     }
     windowTitle += globals->gName + " :: " + globals->gClaim + " :: ";
     if(globals->get_gRunning()) windowTitle += "Running";

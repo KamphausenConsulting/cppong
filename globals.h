@@ -7,6 +7,7 @@ using namespace std;
 #include <QTimer>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <queue>
 
 #include "gform.h"
@@ -62,7 +63,7 @@ class globals{
         bool            gRunning;
         bool            gColorSwitch;
         bool            gShowCollisonBoxes;
-        bool            gRandom;
+        int             gRandom;
         int             gRandomMin;
         int             gRandomMax;
         float           gDisplayFactor;
